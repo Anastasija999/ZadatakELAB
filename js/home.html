@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>McDonald's dostava</title>
+    <link rel="icon" href="images/logo.jpg" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <div class="top-nav">
+        <div class="logo"><img src="images/logo.jpg" style="width:60px;height:60px;"></div>
+        <div class="menu">
+            <ul>
+                <li><a class="active" href="#">Početna</a></li>
+                <li><a href="gallery.html">Proizvodi</a></li>
+                <li><a href="aboutUs.html">Lokacija <i class='icon'></i></a></li>
+            </ul>
+        </div>
+    </div>       
+    <div class="headline">
+        <br>
+        <br>
+        <br>
+        <div class="headline-text">
+            <div class="headline-text-item">
+                <div id="changeText"><strong>McDonald's</strong> DOSTAVA</strong></div>
+                <br>
+                <br>
+                <br>
+                <div id="changeClock">00-24h</div>
+                <br>
+                <div class="item">
+                        <button onclick="openWin()" type="button" style="width: 200px">Kontaktiraj nas!</button>
+                </div>
+                <h3>U bilo koje doba dana i noći, radimo za Vas!</h3>
+                <p id="clockbox"></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+            <p>&copy; McDonald's dostava</p>
+          </div>
+</body>
+<script type="text/javascript">
+function blink() {
+        document.getElementById("changeText").style.color = "#000000";
+        document.getElementById("changeClock").style.color = "#ffffff";
+		setTimeout("appear()", 700);
+	}
+
+function appear() {
+        document.getElementById("changeText").style.color = "#ffffff";
+        document.getElementById("changeClock").style.color = "#000000";
+		setTimeout("blink()", 700);
+    }
+    var tmonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+
+function getClock() {
+    var d = new Date();
+    var nmonth = d.getMonth(), ndate = d.getDate(), nyear = d.getFullYear();
+
+    var nhour = d.getHours(), nmin = d.getMinutes(), nsec = d.getSeconds(), ap;
+
+    if (nhour == 0) { ap = " AM"; nhour = 12; }
+    else if (nhour < 12) { ap = " AM"; }
+    else if (nhour == 12) { ap = " PM"; }
+    else if (nhour > 12) { ap = " PM"; nhour -= 12; }
+
+    if (nmin <= 9) nmin = "0" + nmin;
+    if (nsec <= 9) nsec = "0" + nsec;
+
+    document.getElementById('clockbox').innerHTML = "" + tmonth[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ":" + nsec + ap + "";
+}
+
+function openWin() {
+    myWindow = window.open("contactUs.html", "myWindow", "width=1500,height=1000");   
+}
+
+window.onload = function () {
+    blink();
+    getClock();
+    setInterval(getClock, 1000);
+}
+</script>
+</html>
+
+
